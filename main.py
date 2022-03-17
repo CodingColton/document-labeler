@@ -6,12 +6,17 @@ import fpdf
 import os
 import sys
 
-sticker_file = r'resources/exhibit-label.jpg'
+sticker_file = r'resources/exhibit-label.jpg' #sets label picture location
+# defines where this blank pdf is located to be modified later
 temporary_text_file = r'resources/temporary-text.pdf'
+# this references where to find the documents that the user needs labeled
 document_folder_path = r'DOCUMENTS-GO-HERE/'
-document_number = 1
+document_number = 1 # sets the starting number for the first document R-"1"
 
-party_type = 'r'
+party_type = 'r' # set party type (p Petitioner, r Respondent)
+
+# The code below goes through each file in DOCUMENTS-GO-HERE and adds
+# P-1. or R-1. (depending on party_type set above) to the start of the file
 '''
 for file in os.listdir(document_folder_path):
     if file.endswith('.pdf'):
@@ -24,11 +29,12 @@ for file in os.listdir(document_folder_path):
             document_folder_path + '/' + "P-" + str(document_number).zfill(2) + '. ' + file)
             document_number += 1
 '''
-#print("Jobs done.")
 
+# creates a list with all .pdf files in the directory stored to it
 folder_doc_list = list(glob.glob(document_folder_path + '*.pdf'))
-print(str(folder_doc_list))
+print(str(folder_doc_list)) # for debugging purposes
 
+#This for loop handles the labeling of each pdf document
 for file in folder_doc_list:
     targeted_pdf = PdfFileReader(str(file))
     targeted_pdf_page = targeted_pdf.getPage(0)
@@ -75,11 +81,9 @@ for file in folder_doc_list:
 
     labeled_pdf_file.close()
 
-    
-
     if document_number >= len(folder_doc_list):
         break
     else: 
         document_number += 1
 
-print("Jobs Done for labeling")
+print("Jobs Done for labeling") # for debugging
