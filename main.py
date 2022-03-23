@@ -1,3 +1,6 @@
+#Local Modules
+import get_user_input
+#Online Modules
 from cgitb import text
 from PyPDF2 import PdfFileWriter, PdfFileMerger, PdfFileReader
 import glob
@@ -13,14 +16,16 @@ temporary_text_file = r'resources/temporary-text.pdf'
 document_folder_path = r'DOCUMENTS-GO-HERE/'
 document_number = 1 # sets the starting number for the first document R-"1"
 
-party_type = 'r' # set party type (p Petitioner, r Respondent)
+party_type = 'p' #create variable for Party at default of 'p' Petitioner
+get_user_input.get_user_input_for_party() # gets user input and checks that it contains a correct option
+
 
 # The code below goes through each file in DOCUMENTS-GO-HERE and adds
 # P-1. or R-1. (depending on party_type set above) to the start of the file
 '''
 for file in os.listdir(document_folder_path):
     if file.endswith('.pdf'):
-        if party_type.lower() == 'r':
+        if get_user_input.party_type.lower() == 'r':
             os.rename(document_folder_path + '/' + file, 
             document_folder_path + '/' + "R-" + str(document_number).zfill(2) + '. ' + file)
             document_number += 1
@@ -52,7 +57,7 @@ for file in folder_doc_list:
     text_pdf_page.set_xy(5, 5)
     text_pdf_page.image(sticker_file, 0, 0, sticker_width, sticker_height)
 
-    if party_type == 'r':
+    if get_user_input.party_type == 'r':
         text_pdf_page.cell(target_pdf_width / 9, sticker_width * .4,
         txt='R-' + str(document_number).zfill(2), ln=0)
 
@@ -85,5 +90,3 @@ for file in folder_doc_list:
         break
     else: 
         document_number += 1
-
-print("Jobs Done for labeling") # for debugging
