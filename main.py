@@ -19,7 +19,6 @@ document_number = 1 # sets the starting number for the first document R-"1"
 party_type = 'p' #create variable for Party at default of 'p' Petitioner
 get_user_input.get_user_input_for_party() # gets user input and checks that it contains a correct option
 
-
 # The code below goes through each file in DOCUMENTS-GO-HERE and adds
 # P-1. or R-1. (depending on party_type set above) to the start of the file
 '''
