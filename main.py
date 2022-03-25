@@ -17,10 +17,7 @@ document_folder_path = r'DOCUMENTS-GO-HERE/'
 document_number = 1 # sets the starting number for the first document R-"1"
 
 party_type = 'p' #create variable for Party at default of 'p' Petitioner
-get_user_input.get_user_input_for_party() # gets user input and checks that it contains a correct option
-
-# The code below goes through each file in DOCUMENTS-GO-HERE and adds
-# P-1. or R-1. (depending on party_type set above) to the start of the file    
+get_user_input.get_user_input_for_party() # gets user input and checks that it contains a correct option 
 
 # creates a list with all .pdf files in the directory stored to it
 folder_doc_list = list(glob.glob(document_folder_path + '*.pdf'))
@@ -29,7 +26,6 @@ print(str(folder_doc_list)) # for debugging purposes
 #This for loop handles the labeling of each pdf document
 for file in folder_doc_list:
     
-            
     targeted_pdf = PdfFileReader(str(file))
     targeted_pdf_page = targeted_pdf.getPage(0)
     target_pdf_width = float(targeted_pdf_page.mediaBox.getWidth()) * 0.352
@@ -75,9 +71,10 @@ for file in folder_doc_list:
 
     labeled_pdf_file.close()
 
+    #gets just the name of the pdf file(and not the directory location) to be used when renaming the file
     name_of_pdf_no_directory = str(file.split("/", 1)[1])
-    print(name_of_pdf_no_directory)
-
+    # The code below goes through each file in DOCUMENTS-GO-HERE and adds
+    # P-1. or R-1. (depending on party_type set above) to the start of the file   
     if get_user_input.party_type.lower() == 'r':
         os.rename(file, document_folder_path + "R-" + str(document_number).zfill(2) + '. ' + name_of_pdf_no_directory)   
     else:
