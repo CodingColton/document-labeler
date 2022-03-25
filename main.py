@@ -45,12 +45,12 @@ for file in folder_doc_list:
 
     if get_user_input.party_type == 'r':
         text_pdf_page.cell(target_pdf_width / 9, sticker_width * .4,
-        txt='R-' + str(document_number).zfill(2), ln=0)
+                txt='R-' + str(document_number).zfill(2), ln=0)
 
         text_pdf_page.output(temporary_text_file)
     else:
         text_pdf_page.cell(target_pdf_width / 9, sticker_width * .4,
-        txt='P-' + str(document_number).zfill(2), ln=0)
+                txt='P-' + str(document_number).zfill(2), ln=0)
 
         text_pdf_page.output(temporary_text_file)
 
