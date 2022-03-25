@@ -21,7 +21,6 @@ get_user_input.get_user_input_for_party() # gets user input and checks that it c
 
 # The code below goes through each file in DOCUMENTS-GO-HERE and adds
 # P-1. or R-1. (depending on party_type set above) to the start of the file
-'''
 for file in os.listdir(document_folder_path):
     if file.endswith('.pdf'):
         if get_user_input.party_type.lower() == 'r':
@@ -32,7 +31,6 @@ for file in os.listdir(document_folder_path):
             os.rename(document_folder_path + '/' + file, 
             document_folder_path + '/' + "P-" + str(document_number).zfill(2) + '. ' + file)
             document_number += 1
-'''
 
 # creates a list with all .pdf files in the directory stored to it
 folder_doc_list = list(glob.glob(document_folder_path + '*.pdf'))
@@ -40,6 +38,8 @@ print(str(folder_doc_list)) # for debugging purposes
 
 #This for loop handles the labeling of each pdf document
 for file in folder_doc_list:
+    document_number = 1 # resets the document number back to 1
+
     targeted_pdf = PdfFileReader(str(file))
     targeted_pdf_page = targeted_pdf.getPage(0)
     target_pdf_width = float(targeted_pdf_page.mediaBox.getWidth()) * 0.352
