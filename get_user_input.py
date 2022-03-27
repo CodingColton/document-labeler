@@ -1,4 +1,15 @@
 from multiprocessing.connection import answer_challenge
+
+def get_user_input_start_number():
+    global document_number
+    document_number = input(
+                "Please enter the starting exhibit number " 
+                + "(Press 'Enter' with no response for 1): ")
+    if document_number == "":
+        document_number = 1
+    else:
+        document_number = int(document_number)
+
 def get_user_input_for_party():
     while True:
         global party_type
