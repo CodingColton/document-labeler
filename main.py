@@ -15,6 +15,7 @@ temporary_text_file = r'resources/temporary-text.pdf'
 # this references where to find the documents that the user needs labeled
 document_folder_path = r'DOCUMENTS-GO-HERE/'
 document_number = 1 # sets the starting number for the first document R-"1"
+get_user_input.get_user_input_start_number() #get input for starting number
 
 party_type = 'p' #create variable for Party at default of 'p' Petitioner
 get_user_input.get_user_input_for_party() # get input for party type
