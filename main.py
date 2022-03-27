@@ -46,12 +46,12 @@ for file in folder_doc_list:
 
     if get_user_input.party_type == 'r':
         text_pdf_page.cell(target_pdf_width / 9, sticker_width * .4,
-                txt='R-' + str(document_number).zfill(2), ln=0)
+                txt='R-' + str(get_user_input.document_number).zfill(2), ln=0)
 
         text_pdf_page.output(temporary_text_file)
     else:
         text_pdf_page.cell(target_pdf_width / 9, sticker_width * .4,
-                txt='P-' + str(document_number).zfill(2), ln=0)
+                txt='P-' + str(get_user_input.document_number).zfill(2), ln=0)
 
         text_pdf_page.output(temporary_text_file)
 
@@ -80,14 +80,15 @@ for file in folder_doc_list:
     # P-1 or R-1 (depending on party_type set above) to the start of the file
     if get_user_input.party_type.lower() == 'r':
         os.rename(file,
-                document_folder_path + "R-" + str(document_number).zfill(2)
+                document_folder_path + "R-" + str(get_user_input.document_number).zfill(2)
                         + '. ' + name_of_pdf_no_directory)   
     else:
         os.rename(file,
-                document_folder_path + "P-" + str(document_number).zfill(2) 
+                document_folder_path + "P-" + str(get_user_input.document_number).zfill(2) 
                         + '. ' + name_of_pdf_no_directory)
 
-    if document_number >= len(folder_doc_list):
+    if get_user_input.document_number >= (
+                get_user_input.document_number + len(folder_doc_list)):
         break
     else: 
-        document_number += 1
+        get_user_input.document_number += 1
