@@ -1,6 +1,7 @@
 from multiprocessing.connection import answer_challenge
 
 def get_user_input_start_number():
+    #have the user input the starting exhibit number
     global document_number
     document_number = input(
                 "Please enter the starting exhibit number " 
@@ -11,9 +12,11 @@ def get_user_input_start_number():
         document_number = int(document_number)
 
 def get_user_input_for_party():
+    # have user input which party they are representing
     while True:
         global party_type
-        party_type = input("Enter 'p' for Petitioner, or 'r' for Respondent (Hit 'Enter' with no response for Petitioner): ")
+        party_type = input("Enter 'p' for Petitioner, or 'r' for Respondent "
+        + "(Hit 'Enter' with no response for Petitioner): ")
 
         if party_type.lower() == 'p':
             party_type = 'p'
