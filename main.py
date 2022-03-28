@@ -24,6 +24,10 @@ get_user_input.get_user_input_for_party() # get input for party type
 folder_doc_list = list(glob.glob(document_folder_path + '*.pdf'))
 print(str(folder_doc_list)) # for debugging purposes
 
+#open notepad file
+with open(r'resources/exhibit-list.txt', 'w') as list_text_file:
+    list_text_file.write('')
+
 #This for loop handles the labeling of each pdf document
 for file in folder_doc_list:
     
@@ -79,12 +83,24 @@ for file in folder_doc_list:
     # The code below goes through each file in DOCUMENTS-GO-HERE and adds
     # P-1 or R-1 (depending on party_type set above) to the start of the file
     if get_user_input.party_type.lower() == 'r':
+        with open(r'resources/exhibit-list.txt', 'a') as list_text_file_output:
+            list_text_file_output.write("\nRespondents "
+                    + str(get_user_input.document_number).zfill(2)
+                    + ' - ' + name_of_pdf_no_directory[:-4])
+
         os.rename(file,
-                document_folder_path + "R-" + str(get_user_input.document_number).zfill(2)
+                document_folder_path + "R-"
+                        + str(get_user_input.document_number).zfill(2)
                         + '. ' + name_of_pdf_no_directory)   
     else:
+        with open(r'resources/exhibit-list.txt', 'a') as list_text_file_output:
+            list_text_file_output.write("\nPetitioners "
+                    + str(get_user_input.document_number).zfill(2)
+                    + ' - ' + name_of_pdf_no_directory[:-4])
+
         os.rename(file,
-                document_folder_path + "P-" + str(get_user_input.document_number).zfill(2) 
+                document_folder_path + "P-"
+                        + str(get_user_input.document_number).zfill(2)
                         + '. ' + name_of_pdf_no_directory)
 
     if get_user_input.document_number >= (
