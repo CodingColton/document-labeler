@@ -31,16 +31,20 @@ with open(r'resources/exhibit-list.txt', 'w') as list_text_file:
 #This for loop handles the labeling of each pdf document
 for file in folder_doc_list:
     
+    #get values
     targeted_pdf = PdfFileReader(str(file))
     targeted_pdf_page = targeted_pdf.getPage(0)
     target_pdf_width = float(targeted_pdf_page.mediaBox.getWidth()) * 0.352
     target_pdf_height = float(targeted_pdf_page.mediaBox.getHeight()) * 0.352
 
+    #set label width and height depending on the size of the document that is
+    #being labeled
     sticker_width = target_pdf_width / 8
     sticker_height = sticker_width * 0.67924528
 
     font_size = ((sticker_width + sticker_height) * 14 / 480) * 10
 
+    #sets the text properties that will display on the label
     text_pdf_page = fpdf.FPDF('p', 'mm',
             [target_pdf_width, target_pdf_height])
     text_pdf_page.add_page()
