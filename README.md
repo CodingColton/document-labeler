@@ -14,3 +14,6 @@ automatically and at the same time.
 4. Input relevant information
 5. Done! Now look at your documents in the "DOCUMENTS-GO-HERE" folder. 
    They should be correctly renamed and labeled.
+
+*NOTE: to sample how this works, run the 'main.py' file with the test pdf
+documents included in the "DOCUMENTS-GO-HERE" folder.*
