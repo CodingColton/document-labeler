@@ -4,10 +4,8 @@ import get_user_input
 from cgitb import text
 from PyPDF2 import PdfFileWriter, PdfFileMerger, PdfFileReader
 import glob
-import io
 import fpdf
 import os
-import sys
 
 # get file locations
 sticker_file = r'resources/exhibit-label.jpg'
