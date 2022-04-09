@@ -1,6 +1,6 @@
 from unittest import TestCase
 import unittest
-from label_documents import log_output_success
+from src.label_documents import log_output_success
 
 class DocumentLabelingTestCase(unittest.TestCase):
     #Tests all elements of the document labeling process
