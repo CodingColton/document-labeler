@@ -1,5 +1,6 @@
 #Local Modules
 import get_user_input
+import label_documents
 #Online Modules
 from cgitb import text
 from PyPDF2 import PdfFileWriter, PdfFileMerger, PdfFileReader
@@ -114,15 +115,8 @@ for file in folder_doc_list:
                 document_folder_path + "P-"
                         + str(get_user_input.document_number).zfill(2)
                         + '. ' + name_of_pdf_no_directory)
-    #print SUCCESS or FAIL in the log text file for each document
-    if file_successfully_labeled == True:
-        with open(r'resources/success-and-fail-log.txt',
-                 'a') as log_text_file_output:
-            log_text_file_output.write("\nSUCCESS " + str(file))
-    else:
-        with open(r'resources/success-and-fail-log.txt',
-                 'a') as log_text_file_output:
-            log_text_file_output.write("\nFAIL " + str(file))
+    
+    label_documents.log_output_success(file_successfully_labeled, file)
 
     if get_user_input.document_number >= (
                 get_user_input.document_number + len(folder_doc_list)):
